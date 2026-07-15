@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W³ Supply Chain — Wave. Warehouse. Worries.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-black: #050505;
+            --card-grey: #161616;
+            --border-grey: #2A2A2A;
+            --text-white: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --gold: #D4AF37;
+            --gold-hover: #F3E5AB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-grey);
+            padding: 15px 4%;
+            position: sticky;
+            top: 0;
+            background-color: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--text-white);
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 9px;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: var(--text-white);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 4%;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 4% 100px;
+            border-bottom: 1px solid var(--border-grey);
+            position: relative;
+        }
+
+        .hero-logo-large {
+            max-width: 220px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .tagline {
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 32px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+            color: var(--text-muted);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--bg-black);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-grey);
+            color: var(--text-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--card-grey);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        section {
+            border-bottom: 1px solid var(--border-grey);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 60px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-grey);
+            border: 1px solid var(--border-grey);
+            padding: 40px;
+            border-radius: 4px;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+        }
+
+        .card-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(212, 175, 55, 0.1);
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .example-box {
+            background-color: rgba(212, 175, 55, 0.05);
+            border-left: 2px solid var(--gold);
+            padding: 15px;
+            font-size: 14px;
+            font-style: italic;
+            color: var(--text-white);
+        }
+
+        .style-block {
+            margin-bottom: 60px;
+        }
+
+        .style-block h3 {
+            font-size: 22px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--gold);
+            padding-left: 12px;
+        }
+
+        .style-block p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .breakdown-card {
+            background-color: var(--card-grey);
+            border: 1px solid var(--border-grey);
+            border-radius: 4px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .breakdown-card h3 {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            color: var(--text-white);
+        }
+
+        .story-text {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .w-element {
+            margin-bottom: 16px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .w-element::before {
+            content: "•";
+            color: var(--gold);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .w-element strong {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: inline-block;
+            width: 150px;
+        }
+
+        .punchline {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-grey);
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #161616 0%, #0a0a0a 100%);
+            border: 1px solid var(--border-grey);
+            aspect-ratio: 16/9;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .pitch-box {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pitch-box p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background-color: #000000;
+            border-top: 1px solid var(--border-grey);
+            padding: 40px 4%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        footer .branding-line {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            header { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 10px; }
+            .w-element strong { display: block; margin-bottom: 4px; }
+            .btn-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-container">
+            <!-- REPLACE '3ws_logo.png' WITH YOUR ACTUAL IMAGE URL IN GOOGLE SITES -->
+            <img src="3ws_logo.png" alt="W³ Supply Chain Logo" class="logo-img">
+            <div class="logo-text-wrapper">
+                <span class="logo-main">W³ SUPPLY CHAIN</span>
+                <span class="logo-sub">Wave &middot; Warehouse &middot; Worries</span>
+            </div>
+        </a>
+        <nav>
+            <a href="#about">The Framework</a>
+            <a href="#style">Style</a>
+            <a href="#examples">Examples</a>
+            <a href="#usecases">Use Cases</a>
+            <a href="#work">Work With Me</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="container" style="padding: 0;">
+            <!-- Large Logo Focal Point -->
+            <img src="3ws_logo.png" alt="W³ Supply Chain Logo" class="hero-logo-large">
+            <h1>W³ Supply Chain</h1>
+            <div class="tagline">WAVE &middot; WAREHOUSE &middot; WORRIES</div>
+            <p>Data tells you the coordinates of the crash; storytelling tells you why the driver was looking at his phone, how much the cargo was worth, and which route the next truck must take to bypass the fallout. In complex industrial ecosystems, data without structural narrative is just expensive noise. The W³ framework strips away corporate fog, turning operational facts into weaponized clarity for rapid executive execution.</p>
+            <div class="btn-group">
+                <a href="#about" class="btn btn-primary">Explore the W³ Framework</a>
+                <a href="#work" class="btn btn-secondary">Work With Me</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">What Are the 3Ws?</h2>
+            <div class="section-subtitle">The Pillars of Executive Architecture</div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-num">W1</div>
+                    <h3>W1: Wave</h3>
+                    <p>The structural momentum and scheduling logic. Understanding how integrated flow windows either sync cleanly or cascade into bottlenecks across your global network channels.</p>
+                    <div class="example-box">"The complex integrated Wave & Logic broke synchronization at 03:00, halting the downstream operations."</div>
+                </div>
+                <div class="card">
+                    <div class="card-num">W2</div>
+                    <h3>W2: Warehouse</h3>
+                    <p>The physical footprint, contiguous networks, and contiguous storage. Mapping the tangible constraints where material halts, moves, or consolidates before customer-facing delivery.</p>
+                    <div class="example-box">"Contiguous network distribution capacity was choked because storage points were backed up."</div>
+                </div>
+                <div class="card">
+                    <div class="card-num">W3</div>
+                    <h3>W3: Worries</h3>
+                    <p>The risk profile, custom-holds, and downstream exposures. Proactively addressing system stress, customs delays, and quality assurance failures before they halt revenue.</p>
+                    <div class="example-box">"A contiguous customs-hold immediately elevated our risk matrix, threatening production shutdowns."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="style">
+        <div class="container">
+            <h2 class="section-title">The W³ Storytelling Style</h2>
+            <div class="section-subtitle">Punchline Architecture & Heat Escalation</div>
+            
+            <div class="style-block">
+                <h3>1. Warm-Cheeky Humor & Executive Clarity</h3>
+                <p>We treat high-stakes global operations with absolute gravity, but we address human panic with dry, unyielding wit. We don't sugarcoat problems; we mock the administrative structures that allowed them to happen, then deliver clear-cut action points that satisfy the C-suite.</p>
+            </div>
+
+            <div class="style-block">
+                <h3>2. Punchline Architecture</h3>
+                <p>Every story, update, or brief must build to an undeniable operational truth. The layout avoids trailing thoughts. Instead, it hits like a tactical punchline—leaving the room silent, fully aligned, and ready to act.</p>
+            </div>
+
+            <div class="style-block">
+                <h3>3. Heat-Escalation Structure</h3>
+                <p>We build tension naturally. W1 starts the spark. W2 turns up the heat, highlighting the cascading commercial vulnerabilities. W3 extinguishes the fire with clinical precision.</p>
+            </div>
+
+            <h3 style="text-transform:uppercase; margin-bottom: 24px; color: var(--gold);">Sample Micro-Stories</h3>
+            <div class="grid-3">
+                <div class="card">
+                    <p><strong>The Wave Collapse:</strong> We pushed an inventory batch sequence on Friday night. By Saturday dawn, our misaligned Wave logic was treating pallets of premium electronics like a demolition derby. <em>We re-synchronized the flow before it hit the shipping floor.</em></p>
+                </div>
+                <div class="card">
+                    <p><strong>The Warehouse Standoff:</strong> A single paperwork hyphen held up a critical component at the dock. While the admin team debated rules, the Warehouse grew silent. <em>We bypassed the paper gridlock and restored contiguous distribution.</em></p>
+                </div>
+                <div class="card">
+                    <p><strong>The Worries Crisis:</strong> A customs hold left high-value inventory stranded in the mid-day heat. Our system flagged the risk instantly, transforming a potential cargo disaster into an active, high-priority detour. <em>We moved the freight before the balance sheet melted.</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="container">
+            <h2 class="section-title">Breakdown Examples</h2>
+            <div class="section-subtitle">Real-World Operational Inquests</div>
+
+            <div class="breakdown-card">
+                <h3>Case Alpha: The Midnight Tarmac Melt</h3>
+                <p class="story-text">A sudden tarmac temperature surge at a crucial transshipment hub caused specialized temperature-controlled pharmaceutical containers to fail their baseline cooling metrics during a prolonged customs delay.</p>
+                <div class="w-element"><strong>Wave:</strong> Incoming flights misaligned with terminal handling windows, stranding fragile cargo on active runways.</div>
+                <div class="w-element"><strong>Warehouse:</strong> On-site cold-chain storage facilities were operating at maximum capacity, leaving zero contingency floor space.</div>
+                <div class="w-element"><strong>Worries:</strong> Spoiled chemotherapy batches valued at $2.1M; regional healthcare networks facing critical line stockouts.</div>
+                <div class="punchline">CINEMATIC PUNCHLINE: Cold chains don't care about bureaucratic delays—they either stay ice-cold, or your balance sheet melts in public.</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3>Case Bravo: The Ghost Container Fleet</h3>
+                <p class="story-text">An erroneous API handshake between an ocean carrier's legacy booking terminal and our main ERP system marked 45 active reefer containers as empty and unallocated, stranding them in a remote yard.</p>
+                <div class="w-element"><strong>Wave:</strong> Disrupted software handshakes completely desynchronized our planned export vessel scheduling waves.</div>
+                <div class="w-element"><strong>Warehouse:</strong> Stranded reefers sat hidden in a blind spot on the back-lot grid without tracking.</div>
+                <div class="w-element"><strong>Worries:</strong> $1.4M in fresh perishables decaying in the sun; immediate contract termination penalties from overseas buyers.</div>
+                <div class="punchline">CINEMATIC PUNCHLINE: Algorithms are magnificent assistants, but they leave millions of dollars rotting on the pavement without human eyes.</div>
+            </div>
+
+            <div class="breakdown-card">
+                <h3>Case Charlie: The Microchip Maverick</h3>
+                <p class="story-text">A tier-2 microcontroller component fabrication supplier unilaterally substituted an alternative sub-component compound to circumvent a regional raw-material constraint, failing our stress tolerances during quality assurance.</p>
+                <div class="w-element"><strong>Wave:</strong> Unannounced component shifts threw receiving verification sequences into immediate backlog.</div>
+                <div class="w-element"><strong>Warehouse:</strong> Unusable electronic units locked down and blocked active assembly staging bays.</div>
+                <div class="w-element"><strong>Worries:</strong> Failing crucial stress testing; threatening automotive line shutdowns carrying $350k-per-day penalties.</div>
+                <div class="punchline">CINEMATIC PUNCHLINE: Speed is worthless if the destination is a massive, multi-million dollar product recall. Quality isn't negotiable.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usecases">
+        <div class="container">
+            <h2 class="section-title">Supply Chain Use Cases</h2>
+            <div class="section-subtitle">Tactical W³ Execution Across Segments</div>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Demand Planning</h3>
+                    <div class="w-element" style="font-size: 13px;"><strong>Wave:</strong> Consensus scheduling off by 40%.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Warehouse:</strong> Empty shelves; zero fallback stock.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Worries:</strong> Lost market share to competitors.</div>
+                </div>
+                <div class="card">
+                    <h3>Logistics</h3>
+                    <div class="w-element" style="font-size: 13px;"><strong>Wave:</strong> Delayed rail linehaul arrivals.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Warehouse:</strong> Staging docks choked with idle crew.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Worries:</strong> Production lines starved of raw inputs.</div>
+                </div>
+                <div class="card">
+                    <h3>Forecasting</h3>
+                    <div class="w-element" style="font-size: 13px;"><strong>Wave:</strong> Tariff-driven shift in global routes.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Warehouse:</strong> Over-holding high-tax components.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Worries:</strong> Operating margins taking a direct hit.</div>
+                </div>
+                <div class="card">
+                    <h3>Operational Excellence</h3>
+                    <div class="w-element" style="font-size: 13px;"><strong>Wave:</strong> Misaligned picking sequence runs.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Warehouse:</strong> Sorting layout bottlenecked at dispatch.</div>
+                    <div class="w-element" style="font-size: 13px;"><strong>Worries:</strong> Missing critical transport SLA windows.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="youtube">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Media & Insights</h2>
+            <div class="section-subtitle">Watch W³ in Action</div>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 40px;">See how the W³ framework breaks down real-time global logistical nightmares, translating complex network disruption data into high-impact operational execution strategies.</p>
+            <div class="video-placeholder">
+                [ Embedded Video: W³ Architecture Overview ]
+            </div>
+        </div>
+    </section>
+
+    <section id="work">
+        <div class="container">
+            <h2 class="section-title">Work With Me</h2>
+            <div class="section-subtitle">Deploying Tactical Clarity</div>
+            <div class="pitch-box">
+                <p>We don't do generic consulting. We don't deliver 300-page slide decks that gather digital dust. We enter highly stressed operational environments, apply the W³ framework to your communication, reporting, and logistics strategy, and build a culture of immediate execution. Whether you need corporate training for your planning teams, a keynote speaker to shock your executive board into alignment, or deep-dive operational consulting—we deliver weaponized clarity.</p>
+                
+                <div class="grid-3" style="margin-bottom: 40px; text-align: left;">
+                    <div class="card">
+                        <h4 style="color: var(--gold); text-transform: uppercase; font-size: 16px; margin-bottom: 10px;">Executive Consulting</h4>
+                        <p style="font-size: 14px; margin: 0;">Direct operational triage. We restructure your reporting metrics and supply chain communication nodes to guarantee faster response times during global disruptions.</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="color: var(--gold); text-transform: uppercase; font-size: 16px; margin-bottom: 10px;">Corporate Training</h4>
+                        <p style="font-size: 14px; margin: 0;">Turn your analysts into elite communicators. Your teams will learn how to brief the C-suite cleanly, accurately, and without administrative fluff.</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="color: var(--gold); text-transform: uppercase; font-size: 16px; margin-bottom: 10px;">Keynote Speaking</h4>
+                        <p style="font-size: 14px; margin: 0;">A high-intensity, cinematic look into the realities of global logistics. Perfect for aligning leadership teams during high-stakes corporate transformations.</p>
+                    </div>
+                </div>
+
+                <a href="mailto:contact@3wsframework.com" class="btn btn-primary">Initiate Engagement</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="3ws_logo.png" alt="W³ Supply Chain Logo" class="footer-logo">
+        <div class="social-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">YouTube</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2026 W³ Supply Chain. All rights reserved.</p>
+        <div class="branding-line">W³ — Wave &bull; Warehouse &bull; Worries</div>
+    </footer>
+
+</body>
+</html>
